@@ -48,8 +48,8 @@ export function ComingSoonOverlay() {
       if (response.ok) {
         setIsSubmitted(true)
         // Track the event for analytics
-        if (typeof window !== 'undefined' && window.gtag) {
-          window.gtag('event', 'pre_launch_signup', {
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'pre_launch_signup', {
             email: email,
             source: 'coming-soon-overlay'
           })
