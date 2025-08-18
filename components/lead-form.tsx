@@ -77,7 +77,7 @@ export function LeadForm({
   }
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<LeadFormData> = {}
+    const newErrors: LeadFormErrors = {}
 
     if (!formData.firstName.trim()) newErrors.firstName = "First name is required"
     if (!formData.lastName.trim()) newErrors.lastName = "Last name is required"
