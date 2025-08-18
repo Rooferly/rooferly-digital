@@ -1,0 +1,76 @@
+{
+  "brand": "Rooferly",
+  "tagline": "Roofing Made Simple",
+  "one_liner": "The easiest way to buy a new roof in Chicagoland — instant estimates, virtual visualization, and zero hassle.",
+  "mission": "To revolutionize the roofing experience by providing homeowners with instant pricing, transparent options, and digital visualization tools — making roof replacement simple, fast, and trustworthy.",
+  "vision": "A world where buying a new roof is as simple and straightforward as shopping online — fast, transparent, and stress-free.",
+  "core_values": [
+    "Transparency – No hidden costs, no surprises.",
+    "Simplicity – Easy to understand, easy to use, easy to buy.",
+    "Trust – Licensed, insured, and backed by warranty.",
+    "Innovation – Using technology to change an outdated industry.",
+    "Service – Homeowner-first experience, every time."
+  ],
+  "target_audience": {
+    "primary": "Chicagoland homeowners (ages 35–65) needing roof replacement.",
+    "secondary": "Busy professionals who value digital-first convenience.",
+    "pain_points": [
+      "Frustration with multiple quotes",
+      "Hidden costs and surprises",
+      "Pressure sales tactics",
+      "Lack of trust in roofing industry"
+    ]
+  },
+  "voice_tone": {
+    "voice": "Professional, approachable, tech-forward",
+    "tone": "Clear, simple, reassuring, empowering",
+    "do_say": [
+      "Get your instant estimate today.",
+      "See your new roof before you buy.",
+      "Roofing, made simple."
+    ],
+    "dont_say": [
+      "Unexplained jargon (TPO, EPDM, etc.)",
+      "High-pressure sales lines",
+      "Old-school clichés"
+    ]
+  },
+  "messaging_pillars": [
+    "Instant Estimates",
+    "Virtual Visualization",
+    "Licensed & Insured",
+    "Local Service",
+    "Stress-Free Experience"
+  ],
+  "visual_identity": {
+    "colors": {
+      "primary": {
+        "orange": "#F05A28",
+        "charcoal": "#2D2D2D",
+        "white": "#FFFFFF"
+      },
+      "secondary": {
+        "light_gray": "#F6F6F6",
+        "navy": "#1A2E40"
+      }
+    },
+    "typography": {
+      "headlines": ["Inter", "Montserrat"],
+      "body": ["Open Sans", "Roboto"]
+    },
+    "iconography": "Simple, flat icons (shields, checkmarks, houses, maps)"
+  },
+  "design_principles": [
+    "Simple layouts",
+    "Bold CTAs",
+    "Visual proof (photos, before/after sliders)",
+    "Trust signals (licenses, warranties, reviews)"
+  ],
+  "content_guidelines": {
+    "website": "Short, benefit-driven, scannable",
+    "ads_social": "Bold, direct, value-focused",
+    "emails": "Friendly, clear, 1 CTA",
+    "headline_formula": "Action + Benefit + Simplicity"
+  },
+  "elevator_pitch": "Rooferly makes buying a new roof as simple as shopping online. We give Chicagoland homeowners instant estimates, virtual roof visualization, and transparent pricing without the sales pressure. Licensed, insured, and backed by a 25-year warranty — we make roofing simple, fast, and stress-free."
+}
