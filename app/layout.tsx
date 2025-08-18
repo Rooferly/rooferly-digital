@@ -26,7 +26,6 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
       </head>
                    <body className={inter.className}>
-               <ComingSoonWrapper>
                  <div className="relative flex min-h-screen flex-col">
                    <SiteHeader />
                    <main className="flex-1">
@@ -34,7 +33,6 @@ export default function RootLayout({
                    </main>
                    <SiteFooter />
                  </div>
-               </ComingSoonWrapper>
              </body>
     </html>
   )
