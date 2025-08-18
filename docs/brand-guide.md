@@ -84,6 +84,52 @@ Making buying a new asphalt shingle roof replacement as simple as shopping onlin
 - **Simplified Choice**: One material type vs. overwhelming options
 - **Transparent Process**: Fixed pricing vs. variable quotes
 
+## Rooferly's Digital Process (TECHNICAL)
+
+### The 5-Step Customer Journey
+
+**Step 1: Address Entry & Aerial Analysis**
+- Homeowner enters their address on the website
+- EagleView API automatically fires to capture aerial imagery and measurements
+- No photos needed - all data from high-resolution aerial imagery
+- Instant roof measurements and complexity analysis
+
+**Step 2: Address Confirmation & Deposit**
+- Homeowner confirms their address and property details
+- Prompted to accept $300 refundable deposit
+- Deposit refunded upon purchase of new roof
+- Secures the estimate and design process
+
+**Step 3: Guided Style Guide Process**
+- Interactive shingle selection using manufacturer's roof viewer API
+- See realistic renderings of different shingle options on their actual roof
+- Guided process to narrow down style preferences
+- Real-time visualization powered by manufacturer APIs
+
+**Step 4: Final Selection & Options**
+- Homeowner confirms their shingle style selection
+- Choose between Basic Roof or Priority Roof options
+- Final review of all selections and specifications
+- Transparent pricing display
+
+**Step 5: Deposit Checkout**
+- Complete checkout process for the $300 refundable deposit
+- Secures their spot in the production queue
+- Deposit applied toward final roof purchase
+- Process moves to contract generation
+
+### Technical Integration Goals
+- Streamline EagleView aerial report import into SumoQuote (or similar)
+- Automated contract generation from aerial data
+- Direct "Buy Now" link delivery after style selection
+- Eliminate manual steps between aerial analysis and contract delivery
+
+### Key APIs & Tools
+- **EagleView API**: Aerial imagery and roof measurements
+- **Manufacturer Roof Viewer APIs**: Real-time shingle visualization
+- **SumoQuote (or similar)**: Contract generation and pricing
+- **Payment Processing**: $300 refundable deposit system
+
 ## Visual Identity
 
 ### Colors
