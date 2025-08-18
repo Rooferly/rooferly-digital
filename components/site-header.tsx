@@ -21,14 +21,14 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-24 items-center justify-between">
+      <div className="container flex h-16 md:h-20 lg:h-24 items-center justify-between px-4 md:px-6">
         {/* Logo */}
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <img 
               src="/logos/LOGO TRANSPARENT DARK.png" 
               alt="RooferLy Logo" 
-              className="h-20 w-auto"
+              className="h-12 md:h-16 lg:h-20 w-auto"
             />
           </Link>
         </div>
@@ -77,8 +77,8 @@ export function SiteHeader() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="space-y-1 px-4 pb-3 pt-2">
+        <div className="md:hidden border-t bg-background">
+          <div className="space-y-1 px-4 pb-4 pt-3">
             {navigation.map((item) => {
               const Icon = item.icon
               return (
@@ -86,21 +86,21 @@ export function SiteHeader() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "flex items-center space-x-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                    "flex items-center space-x-3 rounded-lg px-4 py-3 text-base font-medium transition-colors min-h-[44px]",
                     pathname === item.href
                       ? "bg-primary/10 text-primary"
                       : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-5 w-5" />
                   <span>{item.name}</span>
                 </Link>
               )
             })}
             <div className="pt-4">
-              <Button size="sm" className="w-full bg-orange-600 hover:bg-orange-700 text-white" asChild>
-                <Link href="/estimate">Get Estimate</Link>
+              <Button size="lg" className="w-full bg-orange-600 hover:bg-orange-700 text-white min-h-[44px]" asChild>
+                <Link href="/estimate" onClick={() => setMobileMenuOpen(false)}>Get Estimate</Link>
               </Button>
             </div>
           </div>

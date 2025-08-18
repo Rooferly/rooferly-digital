@@ -102,35 +102,35 @@ export function EstimateForm() {
 
   if (estimate) {
     return (
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-4xl mx-auto space-y-6 md:space-y-8 px-4">
         {/* Results Header */}
         <Card className="border-primary shadow-lg">
           <CardHeader className="text-center pb-4">
-            <CardTitle className="text-3xl text-primary">Your Estimate</CardTitle>
-            <CardDescription>Based on your roof specifications</CardDescription>
+            <CardTitle className="text-2xl md:text-3xl text-primary">Your Estimate</CardTitle>
+            <CardDescription className="text-sm md:text-base">Based on your roof specifications</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="text-center">
-              <div className="text-4xl font-bold text-foreground mb-2">
+              <div className="text-2xl md:text-4xl font-bold text-foreground mb-2">
                 {formatPrice(estimate.range.min)} - {formatPrice(estimate.range.max)}
               </div>
-              <p className="text-muted-foreground">
+              <p className="text-sm md:text-base text-muted-foreground">
                 Estimated range for {estimate.totalSqFt} sq ft • {formData.roofType} roof
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-6 pt-6 border-t">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-6 border-t">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">{estimate.recommendedTier}</div>
-                <div className="text-sm text-muted-foreground">Recommended Package</div>
+                <div className="text-xl md:text-2xl font-bold text-primary">{estimate.recommendedTier}</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Recommended Package</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">{estimate.addOns.length}</div>
-                <div className="text-sm text-muted-foreground">Suggested Add-ons</div>
+                <div className="text-xl md:text-2xl font-bold text-primary">{estimate.addOns.length}</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Suggested Add-ons</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">2-3 days</div>
-                <div className="text-sm text-muted-foreground">Est. Install Time</div>
+                <div className="text-xl md:text-2xl font-bold text-primary">2-3 days</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Est. Install Time</div>
               </div>
             </div>
           </CardContent>
@@ -168,35 +168,35 @@ export function EstimateForm() {
             </CardTitle>
             <CardDescription>Lock in your estimate and schedule your installation</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
-              <Button size="lg" className="w-full">
-                Continue to Scheduling
-              </Button>
-              <Button variant="outline" size="lg" className="w-full">
-                Get Detailed Quote
-              </Button>
-            </div>
-            <p className="text-xs text-muted-foreground text-center">
-              No commitment required • Prices guaranteed for 30 days
-            </p>
-          </CardContent>
+                      <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                <Button size="lg" className="w-full min-h-[48px]">
+                  Continue to Scheduling
+                </Button>
+                <Button variant="outline" size="lg" className="w-full min-h-[48px]">
+                  Get Detailed Quote
+                </Button>
+              </div>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">
+                No commitment required • Prices guaranteed for 30 days
+              </p>
+            </CardContent>
         </Card>
       </div>
     )
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto px-4">
       {/* Progress Bar */}
-      <div className="mb-8">
+      <div className="mb-6 md:mb-8">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium">Step {currentStep} of 4</span>
-          <span className="text-sm text-muted-foreground">{Math.round((currentStep / 4) * 100)}% Complete</span>
+          <span className="text-sm md:text-base font-medium">Step {currentStep} of 4</span>
+          <span className="text-sm md:text-base text-muted-foreground">{Math.round((currentStep / 4) * 100)}% Complete</span>
         </div>
-        <div className="w-full bg-muted rounded-full h-2">
+        <div className="w-full bg-muted rounded-full h-2 md:h-3">
           <div 
-            className="bg-primary h-2 rounded-full transition-all duration-300"
+            className="bg-primary h-2 md:h-3 rounded-full transition-all duration-300"
             style={{ width: `${(currentStep / 4) * 100}%` }}
           />
         </div>
@@ -330,11 +330,12 @@ export function EstimateForm() {
           )}
 
           {/* Navigation */}
-          <div className="flex justify-between pt-6">
+          <div className="flex flex-col sm:flex-row justify-between gap-3 pt-6">
             <Button 
               variant="outline" 
               onClick={prevStep}
               disabled={currentStep === 1}
+              className="w-full sm:w-auto min-h-[48px] order-2 sm:order-1"
             >
               Previous
             </Button>
@@ -342,7 +343,7 @@ export function EstimateForm() {
             <Button 
               onClick={nextStep}
               disabled={!isStepValid() || isCalculating}
-              className="min-w-[120px]"
+              className="min-w-[120px] w-full sm:w-auto min-h-[48px] order-1 sm:order-2"
             >
               {isCalculating ? (
                 <div className="flex items-center space-x-2">
