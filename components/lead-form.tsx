@@ -22,6 +22,19 @@ interface LeadFormData {
   source: string
 }
 
+interface LeadFormErrors {
+  firstName?: string
+  lastName?: string
+  email?: string
+  phone?: string
+  address?: string
+  projectType?: string
+  timeline?: string
+  message?: string
+  consent?: string
+  source?: string
+}
+
 interface LeadFormProps {
   title?: string
   description?: string
@@ -50,7 +63,7 @@ export function LeadForm({
     source: source
   })
 
-  const [errors, setErrors] = React.useState<Partial<LeadFormData>>({})
+  const [errors, setErrors] = React.useState<LeadFormErrors>({})
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [isSubmitted, setIsSubmitted] = React.useState(false)
 

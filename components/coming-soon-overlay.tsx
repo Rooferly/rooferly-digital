@@ -78,7 +78,7 @@ export function ComingSoonOverlay({ isVisible, onClose }: ComingSoonOverlayProps
                   <span className="block text-orange-600">Revolutionary</span>
                 </h2>
                 <p className="text-xl text-gray-600 max-w-lg mx-auto">
-                  The world's first <strong>instant roofing platform</strong> is coming to Chicagoland. 
+                  The world's first <strong>"BUY NOW"</strong> roofing platform is coming to Chicagoland. 
                   Be among the first to experience roofing made simple.
                 </p>
               </div>
@@ -89,16 +89,17 @@ export function ComingSoonOverlay({ isVisible, onClose }: ComingSoonOverlayProps
                   <Calendar className="h-6 w-6 text-orange-600 mx-auto mb-2" />
                   <div className="font-semibold text-gray-900">Early Access</div>
                   <div className="text-sm text-gray-600">Skip the waitlist</div>
+                  {/* TODO: Define early access benefits - priority scheduling, beta features, etc. */}
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <CheckCircle className="h-6 w-6 text-orange-600 mx-auto mb-2" />
                   <div className="font-semibold text-gray-900">Exclusive Pricing</div>
-                  <div className="text-sm text-gray-600">Founder's discount</div>
+                  <div className="text-sm text-gray-600">15% off first 20 roofs</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <Hammer className="h-6 w-6 text-orange-600 mx-auto mb-2" />
-                  <div className="font-semibold text-gray-900">Beta Testing</div>
-                  <div className="text-sm text-gray-600">Shape the future</div>
+                  <div className="font-semibold text-gray-900">First to Market</div>
+                  <div className="text-sm text-gray-600">Revolutionary experience</div>
                 </div>
               </div>
 
@@ -136,12 +137,7 @@ export function ComingSoonOverlay({ isVisible, onClose }: ComingSoonOverlayProps
                 </p>
               </form>
 
-              {/* Social Proof */}
-              <div className="mt-6 text-center">
-                <p className="text-sm text-gray-500">
-                  ⭐⭐⭐⭐⭐ "Can't wait for this!" - Early beta testers
-                </p>
-              </div>
+
             </>
           ) : (
             /* Success State */
