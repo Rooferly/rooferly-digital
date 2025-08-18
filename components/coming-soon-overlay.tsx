@@ -14,13 +14,11 @@ export function ComingSoonOverlay() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const hasSeenOverlay = localStorage.getItem("hasSeenComingSoonOverlay")
-    if (!hasSeenOverlay) {
-      const timer = setTimeout(() => {
-        setIsOpen(true)
-      }, 2000) // Show after 2 seconds
-      return () => clearTimeout(timer)
-    }
+    // Always show overlay for pre-launch phase
+    const timer = setTimeout(() => {
+      setIsOpen(true)
+    }, 1000) // Show after 1 second
+    return () => clearTimeout(timer)
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,7 +33,7 @@ export function ComingSoonOverlay() {
     try {
       await submitLead({ email, source: "coming-soon-overlay" })
       setIsSubmitted(true)
-      localStorage.setItem("hasSeenComingSoonOverlay", "true")
+      // Note: Not setting localStorage - overlay stays permanent until launch
       trackEvent("coming_soon_signup", { email })
     } catch (err) {
       setError("Failed to submit. Please try again.")
@@ -56,13 +54,7 @@ export function ComingSoonOverlay() {
           <div className="absolute bottom-0 right-0 w-full h-8 bg-yellow-400 transform -skew-y-3 origin-bottom-right"></div>
         </div>
 
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 z-10"
-          aria-label="Close"
-        >
-          <X className="h-6 w-6" />
-        </button>
+        {/* Close button removed - permanent overlay until launch */}
 
         {!isSubmitted ? (
           <>
@@ -78,13 +70,18 @@ export function ComingSoonOverlay() {
             {/* Headline */}
             <div className="text-center mb-6">
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
-                🚧 We're Building Something
-                <span className="block text-orange-600">Revolutionary</span>
+                🚧 Coming Soon to Chicagoland
+                <span className="block text-orange-600">Revolutionary Roofing</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-lg mx-auto">
-                The world's first <strong>"BUY NOW"</strong> roofing platform is coming to Chicagoland.
-                Be among the first to experience roofing made simple.
+                The world's first <strong>"BUY NOW"</strong> roofing platform. 
+                Reserve your spot for exclusive early access and special pricing.
               </p>
+              
+              {/* TODO: Add countdown timer here before launch */}
+              {/* <div className="mt-6">
+                <CountdownTimer targetDate="2024-XX-XX" />
+              </div> */}
             </div>
 
             {/* Value Props */}
@@ -151,9 +148,10 @@ export function ComingSoonOverlay() {
             <p className="text-lg text-gray-700 mb-6">
               Thanks for joining the Rooferly revolution. We'll notify you when we launch!
             </p>
-            <Button onClick={() => setIsOpen(false)} className="bg-orange-600 hover:bg-orange-700 text-white">
-              Close
-            </Button>
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mt-6">
+              <p className="text-orange-800 font-semibold">🚀 Stay tuned for launch updates!</p>
+              <p className="text-orange-700 text-sm mt-1">Keep an eye on your inbox for exclusive early access details.</p>
+            </div>
           </div>
         )}
       </div>
