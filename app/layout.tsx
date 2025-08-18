@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
+import { ComingSoonWrapper } from '@/components/coming-soon-wrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,13 +26,15 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
       </head>
       <body className={inter.className}>
-        <div className="relative flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1">
-            {children}
-          </main>
-          <SiteFooter />
-        </div>
+        <ComingSoonWrapper>
+          <div className="relative flex min-h-screen flex-col">
+            <SiteHeader />
+            <main className="flex-1">
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
+        </ComingSoonWrapper>
       </body>
     </html>
   )
