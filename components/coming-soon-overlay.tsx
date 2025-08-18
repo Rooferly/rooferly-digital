@@ -31,13 +31,35 @@ export function ComingSoonOverlay() {
 
     setIsLoading(true)
     try {
-      await submitLead({ email, source: "coming-soon-overlay" })
-      setIsSubmitted(true)
-      // Note: Not setting localStorage - overlay stays permanent until launch
-      trackEvent("coming_soon_signup", { email })
+      // Submit to Formspree
+      const response = await fetch('https://formspree.io/f/xqaloonv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          source: 'coming-soon-overlay',
+          timestamp: new Date().toISOString(),
+          message: `Pre-launch signup from ${email}`,
+        }),
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        // Track the event for analytics
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'pre_launch_signup', {
+            email: email,
+            source: 'coming-soon-overlay'
+          })
+        }
+      } else {
+        throw new Error('Submission failed')
+      }
     } catch (err) {
       setError("Failed to submit. Please try again.")
-      console.error("Lead submission error:", err)
+      console.error("Formspree submission error:", err)
     } finally {
       setIsLoading(false)
     }
@@ -143,14 +165,34 @@ export function ComingSoonOverlay() {
           <div className="relative z-10 text-center py-8 md:py-12">
             <CheckCircle className="h-16 w-16 md:h-20 md:w-20 text-emerald-500 mx-auto mb-4 md:mb-6" />
             <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
-              You're On The List!
+              You're On The VIP List!
             </h2>
             <p className="text-base md:text-lg text-gray-700 mb-4 md:mb-6 px-2">
-              Thanks for joining the Rooferly revolution. We'll notify you when we launch!
+              Check your inbox in the next few minutes for your exclusive welcome package including:
             </p>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 md:p-4 mt-4 md:mt-6">
-              <p className="text-orange-800 font-semibold text-sm md:text-base">🚀 Stay tuned for launch updates!</p>
-              <p className="text-orange-700 text-xs md:text-sm mt-1">Keep an eye on your inbox for exclusive early access details.</p>
+            
+            <div className="space-y-3 mb-4 md:mb-6">
+              <div className="flex items-center justify-center space-x-2 text-sm md:text-base text-gray-700">
+                <CheckCircle className="h-4 w-4 text-emerald-600" />
+                <span>Special early-bird discount code</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2 text-sm md:text-base text-gray-700">
+                <CheckCircle className="h-4 w-4 text-emerald-600" />
+                <span>Complete Rooferly company profile</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2 text-sm md:text-base text-gray-700">
+                <CheckCircle className="h-4 w-4 text-emerald-600" />
+                <span>Our revolutionary process overview</span>
+              </div>
+              <div className="flex items-center justify-center space-x-2 text-sm md:text-base text-gray-700">
+                <CheckCircle className="h-4 w-4 text-emerald-600" />
+                <span>Exclusive pre-launch pricing details</span>
+              </div>
+            </div>
+
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 md:p-4">
+              <p className="text-orange-800 font-semibold text-sm md:text-base">🎉 Launch Date: Spring 2024</p>
+              <p className="text-orange-700 text-xs md:text-sm mt-1">Be the first to experience Chicago's most advanced roofing platform!</p>
             </div>
           </div>
         )}

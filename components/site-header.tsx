@@ -9,9 +9,11 @@ import { Menu, X, Home, Calculator, Calendar, Info, MapPin, Phone } from "lucide
 
 const navigation = [
   { name: "Home", href: "/", icon: Home },
+  { name: "How It Works", href: "/how-it-works", icon: Info },
+  { name: "Services", href: "/services/roof-replacement", icon: Calculator },
+  { name: "Chicago", href: "/locations/chicago-roof-replacement", icon: MapPin },
+  { name: "Warranty", href: "/warranty", icon: Calculator },
   { name: "About", href: "/about", icon: Info },
-  { name: "Services", href: "/services", icon: Calculator },
-  { name: "Service Areas", href: "/service-areas", icon: MapPin },
   { name: "Contact", href: "/contact", icon: Phone },
 ]
 
