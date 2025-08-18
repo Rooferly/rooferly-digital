@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "📋 Open Development Checklist",
+      "type": "shell",
+      "command": "code",
+      "args": ["docs/DEVELOPMENT_CHECKLIST.md"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🎯 Open All Project Docs",
+      "type": "shell",
+      "command": "code",
+      "args": [
+        "docs/DEVELOPMENT_CHECKLIST.md",
+        "docs/brand-guide.md", 
+        "README.md"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🚀 Start Development (with checklist reminder)",
+      "type": "shell",
+      "command": "echo",
+      "args": ["📋 REMINDER: Check docs/DEVELOPMENT_CHECKLIST.md for current priorities! && npm run dev"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+      },
+      "dependsOrder": "sequence",
+      "dependsOn": ["📋 Open Development Checklist"],
+      "problemMatcher": []
+    }
+  ]
+}

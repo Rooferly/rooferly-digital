@@ -1,0 +1,65 @@
+name: 📋 Development Checklist Reminder
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  checklist-reminder:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: 📋 Check if Development Checklist was updated
+      id: checklist_check
+      run: |
+        if git diff --name-only HEAD~1 | grep -q "docs/DEVELOPMENT_CHECKLIST.md"; then
+          echo "checklist_updated=true" >> $GITHUB_OUTPUT
+        else
+          echo "checklist_updated=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: 🚨 Post Checklist Reminder Comment
+      if: steps.checklist_check.outputs.checklist_updated == 'false' && github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## 📋 Development Checklist Reminder
+            
+            It looks like you made changes but didn't update the [Development Checklist](docs/DEVELOPMENT_CHECKLIST.md).
+            
+            **Please consider:**
+            - [ ] Did you complete any checklist items?
+            - [ ] Should any items be marked as complete?
+            - [ ] Do any new items need to be added?
+            - [ ] Should priorities be updated?
+            
+            **Quick Links:**
+            - [📋 View Development Checklist](docs/DEVELOPMENT_CHECKLIST.md)
+            - [🎨 Brand Guide](docs/brand-guide.md)
+            
+            *This reminder helps keep our development tracking up to date!*`
+          })
+    
+    - name: ✅ Checklist Status Check
+      run: |
+        echo "📋 Development Checklist Status:"
+        echo "Checking for incomplete critical items..."
+        
+        # Count incomplete critical items (you can customize this logic)
+        incomplete_critical=$(grep -c "❌.*Critical" docs/DEVELOPMENT_CHECKLIST.md || echo "0")
+        
+        echo "Incomplete Critical Items: $incomplete_critical"
+        
+        if [ "$incomplete_critical" -gt "0" ]; then
+          echo "⚠️ There are $incomplete_critical critical items remaining"
+          echo "🎯 Focus on critical items first!"
+        else
+          echo "✅ All critical items are complete!"
+        fi

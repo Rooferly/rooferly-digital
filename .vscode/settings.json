@@ -1,0 +1,49 @@
+{
+  "workbench.startupEditor": "readme",
+  "files.defaultLanguage": "markdown",
+  "workbench.tips.enabled": true,
+  "workbench.welcomePage.walkthroughs.openOnInstall": false,
+  "workbench.colorTheme": "Default Dark+",
+  "editor.rulers": [80, 120],
+  "files.associations": {
+    "DEVELOPMENT_CHECKLIST.md": "markdown",
+    "*.md": "markdown"
+  },
+  "markdown.preview.openMarkdownLinks": "inEditor",
+  "workbench.editorAssociations": {
+    "README.md": "default"
+  },
+  "todo-tree.general.tags": [
+    "TODO",
+    "FIXME", 
+    "NOTE",
+    "CHECKLIST",
+    "PRIORITY"
+  ],
+  "todo-tree.highlights.defaultHighlight": {
+    "icon": "alert",
+    "type": "tag",
+    "foreground": "red",
+    "background": "yellow",
+    "opacity": 50,
+    "iconColour": "blue"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "CHECKLIST": {
+      "icon": "checklist",
+      "foreground": "orange",
+      "background": "rgba(255,165,0,0.3)"
+    },
+    "PRIORITY": {
+      "icon": "flame",
+      "foreground": "red",
+      "background": "rgba(255,0,0,0.3)"
+    }
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.next/**": true
+  }
+}
