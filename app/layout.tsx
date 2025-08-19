@@ -8,6 +8,7 @@ import { ComingSoonWrapper } from '@/components/coming-soon-wrapper'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  // Force Vercel rebuild - SEO metadata update
   title: 'Roof Replacement Chicago | Asphalt Shingles | Rooferly',
   description: 'Get instant roof replacement estimates in Chicago. Asphalt shingle specialists. Licensed, insured, transparent pricing. No sales visits required.',
   keywords: 'roof replacement chicago, asphalt shingle roofing chicago, chicago roof replacement, roofing contractors chicago',
