@@ -55,8 +55,99 @@ const trustIndicators = [
 ]
 
 export default function HomePage() {
+  const businessSchema = {
+    "@context": "https://schema.org",
+    "@type": "RoofingContractor",
+    "name": "Rooferly",
+    "alternateName": "Rooferly Digital Roofing",
+    "description": "Chicago roof replacement specialists. Online roof buying platform with instant estimates and virtual visualization for asphalt shingle roofing.",
+    "url": "https://rooferly.co",
+    "telephone": "+1-XXX-XXX-XXXX",
+    "email": "roof@rooferly.co",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "TBD",
+      "addressLocality": "Naperville", 
+      "addressRegion": "IL",
+      "postalCode": "60540",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "41.8781",
+      "longitude": "-87.6298"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Chicago",
+        "sameAs": "https://en.wikipedia.org/wiki/Chicago"
+      },
+      {
+        "@type": "City", 
+        "name": "Naperville",
+        "sameAs": "https://en.wikipedia.org/wiki/Naperville,_Illinois"
+      },
+      {
+        "@type": "City",
+        "name": "Aurora",
+        "sameAs": "https://en.wikipedia.org/wiki/Aurora,_Illinois"
+      },
+      {
+        "@type": "City",
+        "name": "Joliet",
+        "sameAs": "https://en.wikipedia.org/wiki/Joliet,_Illinois"
+      },
+      {
+        "@type": "City",
+        "name": "Schaumburg",
+        "sameAs": "https://en.wikipedia.org/wiki/Schaumburg,_Illinois"
+      }
+    ],
+    "serviceType": [
+      "Roof Replacement",
+      "Asphalt Shingle Installation", 
+      "Residential Roofing",
+      "Virtual Roof Consultation",
+      "Online Roof Estimates"
+    ],
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Professional License",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "State of Illinois Department of Financial and Professional Regulation"
+      }
+    },
+    "paymentAccepted": [
+      "Cash",
+      "Credit Card", 
+      "Financing Available"
+    ],
+    "currenciesAccepted": "USD",
+    "openingHours": "Mo-Fr 08:00-18:00, Sa 09:00-17:00",
+    "image": "https://rooferly.co/logos/LOGO TRANSPARENT DARK.png",
+    "logo": "https://rooferly.co/logos/LOGO TRANSPARENT DARK.png",
+    "sameAs": [
+      "https://www.facebook.com/rooferly",
+      "https://www.instagram.com/rooferly"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "1",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+      />
+      <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-50 to-orange-50 py-12 md:py-20 lg:py-32">
         <div className="container mx-auto px-4 md:px-6">
@@ -181,6 +272,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }

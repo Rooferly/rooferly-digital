@@ -8,8 +8,37 @@ import { ComingSoonWrapper } from '@/components/coming-soon-wrapper'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'RooferLy - Roofing Made Simple',
-  description: 'Get fast, transparent roofing estimates online. Professional crews, clear pricing, and easy scheduling.',
+  title: 'Roof Replacement Chicago | Asphalt Shingles | Rooferly',
+  description: 'Get instant roof replacement estimates in Chicago. Asphalt shingle specialists. Licensed, insured, transparent pricing. No sales visits required.',
+  keywords: 'roof replacement chicago, asphalt shingle roofing chicago, chicago roof replacement, roofing contractors chicago',
+  openGraph: {
+    title: 'Chicago Roof Replacement | Buy Your Roof Online | Rooferly',
+    description: 'Revolutionary online roof replacement in Chicago. See your new asphalt shingle roof before you buy. Licensed, insured, stress-free.',
+    type: 'website',
+    url: 'https://rooferly.co',
+    siteName: 'Rooferly',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Chicago Roof Replacement | Rooferly',
+    description: 'Buy your roof online in Chicago. Instant estimates, virtual visualization, licensed contractors.',
+    site: '@rooferly',
+  },
+  alternates: {
+    canonical: 'https://rooferly.co',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({

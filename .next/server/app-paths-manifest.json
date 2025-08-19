@@ -1,1 +1,24 @@
-{}
+{
+  "/hello/page": "app/hello/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/test/page": "app/test/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/estimate/page": "app/estimate/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/legal/privacy/page": "app/legal/privacy/page.js",
+  "/about/page": "app/about/page.js",
+  "/legal/terms/page": "app/legal/terms/page.js",
+  "/locations/chicago-roof-replacement/page": "app/locations/chicago-roof-replacement/page.js",
+  "/schedule/page": "app/schedule/page.js",
+  "/how-it-works/page": "app/how-it-works/page.js",
+  "/resources/page": "app/resources/page.js",
+  "/pricing/page": "app/pricing/page.js",
+  "/services/asphalt-shingle-roofing/page": "app/services/asphalt-shingle-roofing/page.js",
+  "/resources/[slug]/page": "app/resources/[slug]/page.js",
+  "/service-areas/page": "app/service-areas/page.js",
+  "/services/roof-replacement/page": "app/services/roof-replacement/page.js",
+  "/services/roof-replacement-cost/page": "app/services/roof-replacement-cost/page.js",
+  "/warranty/page": "app/warranty/page.js"
+}

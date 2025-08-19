@@ -4,11 +4,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Phone, Mail, MapPin, Clock, MessageSquare, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: 'Contact RooferLy - Get Help with Your Roofing Project',
-  description: 'Contact RooferLy for roofing questions, emergency service, or project consultations. Professional roofing experts serving all of Chicagoland.',
+  title: 'Contact Rooferly - Get Help with Your Roofing Project',
+  description: 'Contact Rooferly for roofing questions, emergency service, or project consultations. Professional roofing experts serving all of Chicagoland.',
   openGraph: {
-    title: 'Contact RooferLy - Get Help with Your Roofing Project',
-    description: 'Contact RooferLy for roofing questions, emergency service, or project consultations.',
+    title: 'Contact Rooferly - Get Help with Your Roofing Project',
+    description: 'Contact Rooferly for roofing questions, emergency service, or project consultations.',
   },
 }
 

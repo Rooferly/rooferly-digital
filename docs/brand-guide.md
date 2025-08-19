@@ -1,4 +1,4 @@
-# RooferLy Brand Guide
+# Rooferly Brand Guide
 
 ## Brand Heart & Soul
 

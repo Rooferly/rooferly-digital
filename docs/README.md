@@ -1,6 +1,6 @@
-# RooferLy Documentation
+# Rooferly Documentation
 
-This folder contains brand guidelines and documentation for RooferLy.
+This folder contains brand guidelines and documentation for Rooferly.
 
 ## Files
 

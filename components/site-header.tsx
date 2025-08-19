@@ -29,7 +29,7 @@ export function SiteHeader() {
           <Link href="/" className="flex items-center space-x-2">
             <img 
               src="/logos/LOGO TRANSPARENT DARK.png" 
-              alt="RooferLy Logo" 
+              alt="Rooferly Logo" 
               className="h-12 md:h-16 lg:h-20 w-auto"
             />
           </Link>
