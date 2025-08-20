@@ -1,4 +1,8 @@
 import OpenAI from 'openai';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env.local
+dotenv.config({ path: '.env.local' });
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -6,7 +10,7 @@ const openai = new OpenAI({
   organization: process.env.OPENAI_ORG_ID,
 });
 
-export async function generateContent(prompt: string, model: string = 'gpt-4o-mini') {
+export async function generateContent(prompt: string, model: string = 'gpt-5') {
   try {
     const completion = await openai.chat.completions.create({
       model: model,
@@ -20,8 +24,7 @@ export async function generateContent(prompt: string, model: string = 'gpt-4o-mi
           content: prompt
         }
       ],
-      max_tokens: 1000,
-      temperature: 0.7,
+      max_completion_tokens: 1000,
     });
 
     return completion.choices[0]?.message?.content || 'No response generated';

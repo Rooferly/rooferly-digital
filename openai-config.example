@@ -4,7 +4,7 @@
 OPENAI_API_KEY=your_openai_api_key_here
 
 # Optional: Specify the model to use
-OPENAI_MODEL=gpt-4o-mini
+OPENAI_MODEL=gpt-5
 
 # Optional: Set API base URL if using a different endpoint
 # OPENAI_API_BASE=https://api.openai.com/v1
