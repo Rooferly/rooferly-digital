@@ -1,0 +1,21 @@
+/* Fix bloated Add to Cart button for wholesale */
+.wholesale-quantity-selector ~ .featured-product__add-to-cart-container .featured-product__add-to-cart-button {
+  padding: 12px 24px !important;
+  height: auto !important;
+  min-height: 48px !important;
+  font-size: 1rem !important;
+  line-height: 1.4 !important;
+}
+
+/* Ensure dropdown matches other form elements */
+.wholesale-quantity-selector .form-dropdown select {
+  padding: 12px 16px !important;
+  height: 48px !important;
+  font-size: 1rem !important;
+}
+
+/* Optional: Adjust container spacing */
+.wholesale-quantity-selector {
+  margin-bottom: 16px !important;
+}
+

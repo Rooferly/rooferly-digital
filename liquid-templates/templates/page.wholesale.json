@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "custom_wholesale_form": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{% render 'wholesale-registration-form' %}\n{% render 'wholesale-auto-tagger' %}",
+        "width": "full-width",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_wholesale_form"
+  ]
+}
+

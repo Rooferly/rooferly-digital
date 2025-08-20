@@ -1,98 +1,47 @@
-# 🏠 Rooferly Digital Platform
+# Rooferly Digital - Roof Replacement Website
 
-> **Making roof replacement as simple as shopping online**
+A modern, Next.js-based website for Rooferly, a specialized roof replacement company serving Chicagoland homeowners.
 
-## 🚨 **BEFORE YOU START - CHECK THE DEVELOPMENT CHECKLIST**
+## Project Overview
 
-**📋 [VIEW DEVELOPMENT CHECKLIST →](docs/DEVELOPMENT_CHECKLIST.md)**
+Rooferly specializes exclusively in full roof replacements using asphalt shingles, offering a digital-first experience with instant estimates, virtual roof visualization, and transparent pricing.
 
-⚠️ **IMPORTANT**: Always consult the development checklist before making any changes to this project. It tracks all remaining work and current priorities.
+## Key Features
 
----
+- **Instant Estimates**: Address-based pricing using EagleView API
+- **Virtual Visualization**: Manufacturer roof viewer integration
+- **Transparent Pricing**: No hidden costs, clear Basic/Priority options
+- **Digital-First**: Complete online experience, no in-person sales visits
+- **Local Focus**: Chicagoland service area
 
-## 🎯 Project Overview
+## Technology Stack
 
-Rooferly is Chicago's first fully digital roof replacement platform, specializing exclusively in asphalt shingle roofs. Our API-driven process eliminates sales visits and provides instant estimates using aerial imagery.
+- **Framework**: Next.js 14 with TypeScript
+- **Styling**: Tailwind CSS
+- **Deployment**: Vercel
+- **APIs**: EagleView (aerial imagery), SumoQuote (contracts), payment processing
 
-### 🔄 The 5-Step Digital Process
+## Business Model
 
-1. **Address Entry** → EagleView API fires for aerial data
-2. **Address Confirmation** → $300 refundable deposit
-3. **Style Guide** → Manufacturer roof viewer APIs
-4. **Final Selection** → Basic/Priority options
-5. **Deposit Checkout** → Contract generation
+- **Service**: Full roof replacements only (no repairs/inspections)
+- **Material**: Asphalt shingles only
+- **Sales Channel**: Website only (no in-person appointments)
+- **Target Market**: Chicagoland homeowners, ages 35-65
 
-## 📋 Quick Start Checklist
-
-Before working on this project:
-
-- [ ] ✅ Read the [Development Checklist](docs/DEVELOPMENT_CHECKLIST.md)
-- [ ] 📖 Review the [Brand Guide](docs/brand-guide.md) 
-- [ ] 🎯 Check current sprint priorities
-- [ ] 🔗 Verify API keys and integrations are working
-
-## 🛠️ Development Setup
+## Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
-
-# Build for production
-npm run build
 ```
 
-## 📁 Key Documentation
+## Deployment
 
-| Document | Purpose | Last Updated |
-|----------|---------|--------------|
-| [📋 Development Checklist](docs/DEVELOPMENT_CHECKLIST.md) | **Track all remaining work** | 2024-12-19 |
-| [🎨 Brand Guide](docs/brand-guide.md) | Brand identity & technical process | 2024-12-19 |
-| [📈 Marketing Strategy](docs/MARKETING_SEO_STRATEGY.md) | SEO and marketing approach | 2024-12-19 |
-| [📧 Email Templates](docs/EMAIL_SEQUENCE_TEMPLATE.md) | Customer communication | 2024-12-19 |
+Changes are automatically deployed to Vercel via GitHub integration.
 
-## 🎯 Current Development Priorities
+## Brand Guidelines
 
-**🔥 CRITICAL - Phase 1:**
-1. EagleView API integration
-2. Address entry page development  
-3. Payment processing setup
-
-**⚡ HIGH - Phase 2:**
-1. Manufacturer roof viewer APIs
-2. Style guide interface
-3. Real-time visualization
-
-**📈 MEDIUM - Phase 3:**
-1. SumoQuote integration
-2. Contract generation
-3. Buy Now link system
-
-## 🔗 Important Links
-
-- **Live Site**: [Coming Soon Page](https://rooferly.com)
-- **Email Capture**: Formspree.io endpoint configured
-- **Repository**: GitHub - Rooferly/rooferly-digital
-
-## 🚨 Development Reminders
-
-1. **Always check the development checklist first**
-2. **Update checklist progress as you complete items**
-3. **Follow the brand guide for all messaging**
-4. **No photo uploads - everything is API-driven**
-5. **Focus on roof replacement only (no repairs)**
-
----
-
-## 📞 Contact & Support
-
-For questions about development priorities or technical decisions, consult:
-1. [Development Checklist](docs/DEVELOPMENT_CHECKLIST.md) first
-2. [Brand Guide](docs/brand-guide.md) for process clarification
-3. Project leadership for priority changes
-
----
-
-**Last Updated**: December 19, 2024
+- **Primary Color**: Steel Grey (#4A5568)
+- **Secondary Color**: Burnt Orange (#D97706)
+- **Voice**: Professional, approachable, tech-forward
+- **Mission**: "Roofing Made Simple"

@@ -9,7 +9,11 @@
     "lint": "next lint",
     "checklist": "echo '📋 Opening Development Checklist...' && code docs/DEVELOPMENT_CHECKLIST.md",
     "docs": "echo '📖 Opening all project documentation...' && code docs/DEVELOPMENT_CHECKLIST.md docs/brand-guide.md README.md",
-    "setup": "npm install && npm run checklist"
+    "setup": "npm install && npm run checklist",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug"
   },
   "dependencies": {
     "@executeautomation/playwright-mcp-server": "^1.0.6",
@@ -26,6 +30,7 @@
     "clsx": "^2.0.0",
     "lucide-react": "^0.294.0",
     "next": "^14.2.31",
+    "openai": "^5.13.1",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.0.0",
@@ -38,6 +43,7 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "playwright": "^1.54.2",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"

@@ -1,0 +1,270 @@
+{%- comment -%} CUSTOM WHOLESALE VARIANT FILTERING - LOCKSMITH REPLACEMENT {%- endcomment -%}
+
+{% comment %}
+    Renders an ajax product variant picker
+
+    Accepts:
+    - location: {String} Location of the variant picker. (required)
+    - product: {Object} Product Liquid object (required)
+    - product_form_id: {String} The unique id of the product form to connect the variant picker to other form elements.
+    - section_id: {String} Section id. (required)
+    - update_url: {Boolean} Add the variant info to the pages url. Only use as true on that product's product page.
+
+    Usage:
+    {%- render 'product-variant-picker', product: product, product_form_id: product_form_id, section_id: section.id, update_url: true -%}
+{% endcomment %}
+
+{{ 'styles-component-variant-picker.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} WHOLESALE CUSTOMER DETECTION {%- endcomment -%}
+{%- assign is_wholesale_customer = false -%}
+{%- if customer and customer.tags contains 'wholesale' -%}
+  {%- assign is_wholesale_customer = true -%}
+{%- endif -%}
+
+{%- comment -%} FILTER VARIANTS BASED ON CUSTOMER TYPE {%- endcomment -%}
+{%- assign filtered_variants = product.variants -%}
+{%- if is_wholesale_customer -%}
+  {%- comment -%} For wholesale customers, only show 8oz variants {%- endcomment -%}
+  {%- assign filtered_variants = product.variants | where: 'option1', '8 oz shaker' -%}
+{%- endif -%}
+
+{%- assign has_only_default_variant = false -%}
+{%- if filtered_variants.size == 1 -%}
+  {%- assign has_only_default_variant = true -%}
+{%- endif -%}
+
+{%- assign first_available_variant = nil -%}
+{%- assign selected_variant = nil -%}
+{%- assign selected_or_first_available_variant = nil -%}
+
+{%- for variant in filtered_variants -%}
+  {%- if first_available_variant == nil and variant.available -%}
+    {%- assign first_available_variant = variant -%}
+  {%- endif -%}
+  {%- if selected_variant == nil and variant.selected -%}
+    {%- assign selected_variant = variant -%}
+  {%- endif -%}
+  {%- if variant == product.selected_or_first_available_variant -%}
+    {%- assign selected_or_first_available_variant = product.selected_or_first_available_variant -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if selected_or_first_available_variant == nil -%}
+  {%- assign selected_or_first_available_variant = first_available_variant -%}
+{%- endif -%}
+
+{%- unless has_only_default_variant -%}  
+  {%- liquid
+    assign variants_available_arr = filtered_variants | map: 'available'
+    assign variants_option1_arr = filtered_variants | map: 'option1'
+    assign variants_option2_arr = filtered_variants | map: 'option2'
+    assign variants_option3_arr = filtered_variants | map: 'option3'
+  -%}  
+
+  <variant-selects class="variant-picker no-js-hidden" data-product-form-id="{{ product_form_id }}" data-url="{{ product.url }}" data-update-url="{{ update_url }}" data-section-id="{{ section_id }}" data-main-product-section-id="{{ main_section_id }}" data-product-id="{{ product.id }}">
+    {%- for option in product.options_with_values -%}
+      {%- capture unique_option_id -%}option-{{ product.id }}--{{ option.name | handleize }}--{{ location }}{%- endcapture -%}
+
+      {%- comment -%} FILTER OPTION VALUES FOR WHOLESALE CUSTOMERS {%- endcomment -%}
+      {%- assign option_values = option.values -%}
+      {%- if is_wholesale_customer and option.name == 'Size' -%}
+        {%- comment -%} Only show 8oz for wholesale customers {%- endcomment -%}
+        {%- assign option_values = option.values | where: '8 oz shaker' -%}
+      {%- endif -%}
+
+      {% comment %} Check if the option should be converted to a swatch or button {% endcomment %}
+      {%- liquid 
+        assign native_swatch_count = option_values | map: 'swatch' | compact | size
+        assign legacy_swatch_options = settings.product_variant_swatches | split: ", "
+        assign button_options = settings.product_variant_buttons | split: ", " 
+        assign option_name_handle = option.name | handleize
+        assign convert_to_swatches = false
+        assign convert_to_buttons = false
+        
+        for legacy_swatch_option in legacy_swatch_options
+          assign option_handle = legacy_swatch_option | handleize
+          if option_handle == option_name_handle
+            assign convert_to_swatches = true
+          endif
+        endfor
+
+        if native_swatch_count > 0
+          assign convert_to_swatches = true
+        endif
+
+        for button_option in button_options
+          assign option_handle = button_option | handleize
+          if option_handle == option_name_handle
+            assign convert_to_buttons = true
+          endif
+        endfor
+      -%}
+      
+      {%- if convert_to_swatches -%}
+        <fieldset class="variant-picker__swatches swatches swatches--{{ settings.product_variant_swatch_shape }} align--text-left space--mb--small {% if location == 'pdp-quick-add' %}display--hidden{% endif %}" data-swatch-option="{{ product_form_id }}" data-option-position="{{ forloop.index }}">
+          <legend class="variant-picker__option-name">
+            {{ option.name }}: <span class="variant-picker__swatches-name copy--small copy--default" data-swatch-name>{{ option.selected_value }}</span>
+          </legend>
+          {%- for value in option_values -%}
+            {%- liquid 
+              assign option_disabled = true
+              for variant in filtered_variants
+                case option.position
+                  when 1
+                    if variant.option1 == value and variant.available
+                      assign option_disabled = false
+                    endif
+                  when 2
+                    if variant.option1 == selected_or_first_available_variant.option1 and variant.option2 == value and variant.available
+                      assign option_disabled = false
+                    endif
+                  when 3
+                    if variant.option1 == selected_or_first_available_variant.option1 and variant.option2 == selected_or_first_available_variant.option2 and variant.option3 == value and variant.available
+                      assign option_disabled = false
+                    endif
+                endcase
+              endfor
+
+              assign value_handle = value | handleize
+              assign native_swatch = value.swatch
+
+              if native_swatch.image
+                assign image_url = native_swatch.image | image_url: width: 70, height: 70, crop: 'center'
+                assign native_swatch_value = 'url(' | append: image_url | append: ')'
+              elsif native_swatch.color
+                assign native_swatch_value = 'rgb(' | append: native_swatch.color.rgb | append: ')'
+              endif
+            -%}
+
+            <label class="variant-picker__swatches-label {% if option_disabled %}unavailable{% endif %}" for="{{ unique_option_id }}--{{ value | handleize }}--{{ forloop.index0 }}">
+              <input type="radio"
+                name="{{ unique_option_id }}"
+                value="{{ value | escape }}"
+                id="{{ unique_option_id }}--{{ value | handleize }}--{{ forloop.index0 }}" 
+                {% if option.selected_value == value %}checked{% endif %}
+                form="{{ product_form_id }}"
+                data-radio-id="{{ product_form_id }}-{{ forloop.index0 }}"
+              >                  
+              <div class="swatches__swatch swatches__swatch-{{ settings.product_variant_swatch_shape }}">
+                {%- if settings.product_variant_swatch_shape == 'hexagon-rotated' or settings.product_variant_swatch_shape == 'diamond' -%}
+                  <div class="swatches__shape-border element--{{ settings.product_variant_swatch_shape }}"></div>
+                {%- endif -%}
+                <div class="swatches__shape-container element--{{ settings.product_variant_swatch_shape }}">
+                  {%- if native_swatch -%}
+                    <div class="swatches__swatch-color swatches__swatch-color---native" style="background: {{ native_swatch_value }};"></div>
+                  {%- else -%}
+                    <div class="swatches__swatch-color swatches__swatch-color--{{ value_handle }}">
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+              <span class="display--hidden">{{ value }}</span>
+            </label>
+          {%- endfor -%}
+        </fieldset>
+      {%- elsif convert_to_buttons -%}
+        <fieldset class="variant-picker__buttons align--text-left space--mb--small {% if location == 'pdp-quick-add' %}display--hidden{% endif %}" data-option-position="{{ option.position }}">
+          <legend class="variant-picker__option-name">
+            {{ option.name }}
+          </legend>
+          {%- for value in option_values -%}
+            {%- liquid 
+              assign option_disabled = true
+              for variant in filtered_variants
+                case option.position
+                  when 1
+                    if variant.option1 == value and variant.available
+                      assign option_disabled = false
+                    endif
+                  when 2
+                    if variant.option1 == selected_or_first_available_variant.option1 and variant.option2 == value and variant.available
+                      assign option_disabled = false
+                    endif
+                  when 3
+                    if variant.option1 == selected_or_first_available_variant.option1 and variant.option2 == selected_or_first_available_variant.option2 and variant.option3 == value and variant.available
+                      assign option_disabled = false
+                    endif
+                endcase
+              endfor
+            -%}
+            <label class="variant-picker__buttons-label {% if option_disabled %}unavailable{% endif %}" for="{{ unique_option_id }}--{{ value | handleize }}--{{ forloop.index0 }}">
+              <input type="radio"
+                name="{{ unique_option_id }}"
+                value="{{ value | escape }}"
+                id="{{ unique_option_id }}--{{ value | handleize }}--{{ forloop.index0 }}" 
+                {% if option.selected_value == value %}checked{% endif %}
+                form="{{ product_form_id }}"
+                data-radio-id="{{ product_form_id }}-{{ forloop.index0 }}"
+              >
+              <div class="button button--radio">
+                <span class="variant-picker__buttons-value">
+                  {{ value }}
+                </span>
+              </div>
+            </label>
+          {%- endfor -%}
+        </fieldset>
+      {%- else -%}
+        <fieldset class="variant-picker__dropdowns align--text-left space--mb--small {% if location == 'pdp-quick-add' %}display--hidden{% endif %}" data-option-position="{{ option.position }}">
+          <label class="variant-picker__option-name type--hyphenate" for="{{ unique_option_id }}--{{ forloop.index0 }}">
+            {{ option.name }}
+          </label>
+          <div class="form-dropdown">
+            <select id="{{ unique_option_id }}--{{ forloop.index0 }}"
+              name="{{ unique_option_id }}"
+              form="{{ product_form_id }}"
+              data-select-id="{{ product_form_id }}-{{ forloop.index0 }}"
+            >
+              {%- for value in option_values -%}
+                {%- liquid 
+                  assign option_disabled = true
+                  for variant in filtered_variants
+                    case option.position
+                      when 1
+                        if variant.option1 == value and variant.available
+                          assign option_disabled = false
+                        endif
+                      when 2
+                        if variant.option1 == selected_or_first_available_variant.option1 and variant.option2 == value and variant.available
+                          assign option_disabled = false
+                        endif
+                      when 3
+                        if variant.option1 == selected_or_first_available_variant.option1 and variant.option2 == selected_or_first_available_variant.option2 and variant.option3 == value and variant.available
+                          assign option_disabled = false
+                        endif
+                    endcase
+                  endfor
+                -%}
+                <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                  {% if option_disabled -%}
+                    {{- 'products.product.value_unavailable' | t: option_value: value -}}
+                  {%- else -%}
+                    {{- value -}}
+                  {%- endif %}
+                </option>
+              {%- endfor -%}
+            </select>
+            {% render 'icons', icon: 'caret', class: 'form-dropdown__caret', size: '20' %}
+          </div>
+        </fieldset>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if location == 'pdp-quick-add' -%}
+      <ul class="variant-picker__static list--unstyled" data-quick-add-variants>
+        {%- for option in product.options_with_values -%}
+          <li class="variant-picker__static-item" data-quick-add-option={{ option.name }}>
+            <strong class="variant-picker__static-name copy--bold" data-quick-add-name>{{ option.name }}:</strong>
+            <span class="variant-picker__static-name" data-quick-add-value>{{ option.selected_value }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    <script type="application/json">
+      {{ filtered_variants | json }}
+    </script>
+  </variant-selects>
+{%- endunless -%}
+

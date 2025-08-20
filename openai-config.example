@@ -1,0 +1,19 @@
+# OpenAI API Configuration
+# Copy this file to .env.local and fill in your actual API key
+
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Optional: Specify the model to use
+OPENAI_MODEL=gpt-4o-mini
+
+# Optional: Set API base URL if using a different endpoint
+# OPENAI_API_BASE=https://api.openai.com/v1
+
+# Optional: Set organization ID if you have one
+# OPENAI_ORG_ID=your_org_id_here
+
+# To use this configuration:
+# 1. Copy this file to .env.local
+# 2. Replace 'your_openai_api_key_here' with your actual OpenAI API key
+# 3. Get your API key from: https://platform.openai.com/api-keys
+# 4. The .env.local file will be automatically ignored by git

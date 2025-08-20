@@ -1,0 +1,173 @@
+{%- comment -%} WHOLESALE QUANTITY RESTRICTIONS - BSS REPLACEMENT {%- endcomment -%}
+
+{% comment %}
+    Renders buy buttons in a product template
+
+    Accepts:
+    - add_to_cart_label: {String} Label for the add to cart button based on what cart name is chosen in the store settings.
+    - form: {Object} Form object.
+    - gift_card_recipient_feature_active: {Boolean} Whether the gift card recipient feature is active.
+    - product: {Object} Product Liquid object
+    - product_available: {Boolean} Whether the product is available for purchase.
+    - product_form_id: {String} The unique id of the product form to connect the the buy buttons to the other form elements on the page.
+    - section_id: {String} Section id.
+    - show_dynamic_checkout: {Boolean} Displays dynamic checkout buttons for Shop Pay, Amazon Pay, etc.
+    - show_pickup: Show options for pickup in store if enabled in the store settings.
+    - show_quantity_selector: {Boolean} Whether to show the quantity selector.
+
+    Usage:
+    {%- render 'product-buy-buttons', product: product, product_form_id: product_form_id, section_id: section.id, show_dynamic_checkout: block.settings.show_dynamic_checkout, show_pickup: section.settings.show_pickup, show_quantity_selector: show_quantity_selector -%}
+{% endcomment %}
+
+{%- comment -%} WHOLESALE CUSTOMER DETECTION {%- endcomment -%}
+{%- assign is_wholesale_customer = false -%}
+{%- if customer and customer.tags contains 'wholesale' -%}
+  {%- assign is_wholesale_customer = true -%}
+{%- endif -%}
+
+{%- liquid
+  comment
+    Get first available variant without Locksmith filtering
+  endcomment
+  assign first_available_variant = nil
+  assign selected_variant = nil
+  assign selected_or_first_available_variant = nil
+  
+  for variant in product.variants
+    if first_available_variant == nil and variant.available
+      assign first_available_variant = variant
+    endif
+    if selected_variant == nil and variant.selected
+      assign selected_variant = variant
+    endif
+    if variant == product.selected_or_first_available_variant
+      assign selected_or_first_available_variant = product.selected_or_first_available_variant
+    endif
+  endfor
+  
+  if selected_or_first_available_variant == nil
+    assign selected_or_first_available_variant = first_available_variant
+  endif
+  
+  comment
+    Set quantity rules based on customer type
+  endcomment
+  if is_wholesale_customer
+    assign min_quantity = 6
+    assign increment_quantity = 6
+    assign wholesale_quantities = '6,12,18,24,30,36,42,48,54,60' | split: ','
+  else
+    if selected_or_first_available_variant.quantity_rule.max != null
+      assign max_quantity = selected_or_first_available_variant.quantity_rule.max
+    else
+      assign max_quantity = false
+    endif
+    assign min_quantity = selected_or_first_available_variant.quantity_rule.min
+    assign increment_quantity = selected_or_first_available_variant.quantity_rule.increment
+  endif
+
+  assign cart_qty = cart | item_count_for_variant: selected_or_first_available_variant.id  
+-%}
+
+<div class="featured-product__buy-buttons no-js-hidden">
+  <input type="hidden" name="id" value="{{ selected_or_first_available_variant.id }}">
+  <div data-error-message-wrapper role="alert" hidden class="featured-product__error-message space--mb--small">
+    {%- render 'icons', icon: 'error', class: 'form-message__icon space--mr--xsmall' -%}
+    <span data-error-message class="form-message"></span>
+  </div>
+  <div class="bundle-app-placeholder"></div>
+  <div class="subscription-app-placeholder"></div>
+  <div class="featured-product__buy-buttons-actions">
+    {%- if show_quantity_selector -%}
+      <label class="featured-product__quantity-label space--mb--xsmall" for="Quantity-{{ section_id }}">
+        {%- if is_wholesale_customer -%}
+          {{ 'products.product.quantity.label' | t }} (Half Cases - 6 units minimum)
+        {%- else -%}
+          {{ 'products.product.quantity.label' | t }}
+        {%- endif -%}
+      </label>
+    {%- endif -%}
+      <div class="featured-product__add-to-cart-container">
+        {%- if show_quantity_selector -%}
+          {%- if is_wholesale_customer -%}
+            {%- comment -%} WHOLESALE: Dropdown with 6, 12, 18, 24... {%- endcomment -%}
+            <div class="wholesale-quantity-selector">
+              <div class="form-dropdown element--full-width">
+                <select name="quantity" 
+                        id="Quantity-{{ section_id }}" 
+                        form="{{ section_id }}"
+                        {% unless product_available %} disabled{% endunless %}
+                        class="wholesale-quantity-select">
+                  {%- for qty in wholesale_quantities -%}
+                    <option value="{{ qty }}" {% if forloop.first %}selected="selected"{% endif %}>
+                      {{ qty }} units ({{ qty | divided_by: 6 }} half cases)
+                    </option>
+                  {%- endfor -%}
+                </select>
+                {% render 'icons', icon: 'caret', class: 'form-dropdown__caret', size: '20' %}
+              </div>
+              <div class="wholesale-quantity-note" style="color: #ca663f; font-size: 0.85em; margin-top: 4px;">
+                Wholesale pricing: Minimum 6 units (1/2 case), sold in increments of 6
+              </div>
+            </div>
+          {%- else -%}
+            {%- comment -%} REGULAR CUSTOMERS: Standard quantity selector {%- endcomment -%}
+            <quantity-input class="quantity-selector element--full-width quantity-selector--auto-width">
+              <button class="quantity-selector__button js-quantity-selector-button-minus" name="minus" {% unless product_available %}disabled{% endunless %} data-quantity-action-element>
+                <span class="display--hidden">
+                  {{ 'products.product.quantity.decrease' | t: product: product.title | escape }}
+                </span>
+                {%- render 'icons', icon: 'minus' -%}
+              </button>
+              <input class="quantity-selector__input"
+                type="number"
+                name="quantity"
+                id="Quantity-{{ section_id }}"
+                data-cart-quantity="{{ cart_qty }}"
+                data-min="{{ min_quantity }}"
+                min="{{ min_quantity }}"
+                {% if max_quantity %}
+                  data-max="{{ max_quantity }}"
+                  max="{{ max_quantity }}"
+                {% endif %}
+                step="{{ increment_quantity }}"
+                value="{{ min_quantity }}"
+                form="{{ section_id }}"
+                aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                {% unless product_available %} disabled{% endunless %}
+                data-quantity-action-element
+              >
+              <button class="quantity-selector__button js-quantity-selector-button-plus" name="plus" {% if max_quantity <= cart_qty or product_available == false %}disabled{% endif %} data-quantity-action-element>
+                <span class="display--hidden">
+                  {{ 'products.product.quantity.increase' | t: product: product.title | escape }}
+                </span>
+                {%- render 'icons', icon: 'plus' -%}
+              </button>
+            </quantity-input>
+          {%- endif -%}
+        {%- endif -%}
+        <button
+          type="submit"
+          data-submit-button
+          class="featured-product__add-to-cart-button element--full-width {% if show_quantity_selector %}featured-product__add-to-cart-button--with-quantity{% endif %}"
+        {% unless product_available %} disabled{% endunless %}
+        >
+          <span class="featured-product__add-to-cart-button-text space--mr--xsmall" data-submit-button-text>
+            {%- if product_available -%}
+              {{ add_to_cart_label }}
+            {%- elsif product.tags contains 'coming-soon' -%}
+                {{ 'products.product.coming_soon' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </span>
+        </button>
+      </div>
+    {%- if show_dynamic_checkout -%}
+      <div class="featured-product__dynamic-checkout space--mt--small">
+        {{ form | payment_button }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
