@@ -35,10 +35,10 @@ const contactMethods = [
     icon: MapPin,
     title: "Visit Us",
     description: "Our Naperville office",
-    primary: "1552 S Route 59 #1415",
+    primary: "1552 S. Rte 59 #1415",
     secondary: "Naperville, IL 60564",
     action: "Get Directions",
-    href: "https://maps.google.com/?q=1552+South+Route+59+1415+Naperville+IL+60564"
+    href: "https://maps.google.com/?q=1552+S.+Rte+59+%231415+Naperville+IL+60564"
   },
   {
     icon: Zap,
@@ -170,7 +170,7 @@ export default function ContactPage() {
                   <div className="mb-4 p-3 bg-muted/50 rounded-lg">
                     <p className="font-medium text-foreground mb-2">Our Office:</p>
                     <p className="text-sm text-muted-foreground">
-                      1552 South Route 59 #1415<br/>
+                      1552 S. Rte 59 #1415<br/>
                       Naperville, IL 60564
                     </p>
                   </div>

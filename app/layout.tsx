@@ -4,6 +4,8 @@ import './globals.css'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { ComingSoonWrapper } from '@/components/coming-soon-wrapper'
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
+import { GoogleTagManager, GoogleTagManagerNoScript } from '@/components/analytics/GoogleTagManager'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -55,8 +57,11 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+        <GoogleTagManager />
       </head>
       <body className={inter.className}>
+        <GoogleTagManagerNoScript />
+        <GoogleAnalytics />
         <ComingSoonWrapper>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />

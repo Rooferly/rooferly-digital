@@ -58,13 +58,13 @@ export function SiteFooter() {
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 flex-shrink-0" />
                 <a 
-                  href="https://maps.google.com/?q=1552+South+Route+59+1415+Naperville+IL+60564" 
+                  href="https://maps.google.com/?q=1552+S.+Rte+59+%231415+Naperville+IL+60564" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-primary transition-colors"
                   title="View on Google Maps"
                 >
-                  Naperville, IL
+                  1552 S. Rte 59 #1415, Naperville, IL
                 </a>
               </div>
             </div>

@@ -14,11 +14,17 @@ export function ComingSoonOverlay() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Always show overlay for pre-launch phase
-    const timer = setTimeout(() => {
-      setIsOpen(true)
-    }, 1000) // Show after 1 second
-    return () => clearTimeout(timer)
+    // Only show overlay in production (not in development)
+    const isDevelopment = process.env.NODE_ENV === 'development'
+    const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    
+    if (!isDevelopment && !isLocalhost) {
+      // Show overlay for pre-launch phase in production only
+      const timer = setTimeout(() => {
+        setIsOpen(true)
+      }, 1000) // Show after 1 second
+      return () => clearTimeout(timer)
+    }
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
