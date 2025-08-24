@@ -3,110 +3,89 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 215 25% 27%;
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
-    --primary: 215 25% 27%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 22 78% 60%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 15% 45%;
-    --accent: 22 78% 95%;
-    --accent-foreground: 215 25% 27%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 215 25% 27%;
-    --radius: 1rem;
+  html {
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" 32;
   }
-
-  .dark {
-    --background: 215 25% 8%;
-    --foreground: 0 0% 98%;
-    --card: 215 25% 10%;
-    --card-foreground: 0 0% 98%;
-    --popover: 215 25% 10%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 22 78% 60%;
-    --primary-foreground: 215 25% 8%;
-    --secondary: 215 25% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 215 25% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 215 25% 15%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 215 25% 20%;
-    --input: 215 25% 20%;
-    --ring: 22 78% 60%;
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+@layer components {
+  .gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
   
-  /* Mobile-first responsive optimizations */
-  html {
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6;
   }
   
-  /* Improve touch targets for mobile */
-  button, 
-  [role="button"], 
-  input[type="submit"], 
-  input[type="button"], 
-  a {
-    min-height: 44px;
+  .metric-card {
+    @apply card hover:shadow-md transition-shadow duration-200;
   }
   
-  /* Prevent horizontal scroll on mobile */
-  body, html {
-    overflow-x: hidden;
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
   }
   
-  /* Smooth scrolling for better UX */
-  html {
-    scroll-behavior: smooth;
+  .btn-secondary {
+    @apply bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
   }
   
-  /* Better focus states for accessibility */
-  button:focus-visible,
-  a:focus-visible,
-  input:focus-visible,
-  textarea:focus-visible,
-  select:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all duration-200;
   }
   
-  /* Clean scrollbar styling for overlay */
-  .overlay-scroll::-webkit-scrollbar {
-    width: 4px;
+  .status-excellent {
+    @apply bg-success-50 text-success-600 border-success-200;
   }
   
-  .overlay-scroll::-webkit-scrollbar-track {
-    background: transparent;
+  .status-good {
+    @apply bg-blue-50 text-blue-600 border-blue-200;
   }
   
-  .overlay-scroll::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 2px;
+  .status-needs-improvement {
+    @apply bg-warning-50 text-warning-600 border-warning-200;
   }
   
-  .overlay-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3);
+  .status-poor {
+    @apply bg-danger-50 text-danger-600 border-danger-200;
   }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Loading animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
 }

@@ -1,0 +1,24 @@
+# Zoho API Configuration
+# Copy this file to .env.local and fill in your actual credentials
+
+# Zoho API Credentials
+ZOHO_CLIENT_ID=1000.YOCTD9LN2MKY2MO2O1VSJPI58EHWKN
+ZOHO_CLIENT_SECRET=c7628c677628de62837386d7c9b63be1ffa059559c
+
+# Zoho Data Center (US is most common)
+ZOHO_DATA_CENTER=com
+
+# Zoho Sheets Configuration
+ZOHO_WORKBOOK_NAME=Whiskey Shores Store Locator
+ZOHO_SHEET_NAME=Store Locations
+
+# API Configuration
+ZOHO_API_BASE=https://sheets.zoho.com/api/v2
+ZOHO_AUTH_BASE=https://accounts.zoho.com
+
+# To use this configuration:
+# 1. Copy this file to .env.local
+# 2. The credentials above are already filled in
+# 3. Adjust data center if needed (com=US, eu=Europe, in=India)
+# 4. The .env.local file will be automatically ignored by git
+

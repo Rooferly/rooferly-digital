@@ -10,26 +10,30 @@ import { GoogleTagManager, GoogleTagManagerNoScript } from '@/components/analyti
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  // Force Vercel rebuild - SEO metadata update
   title: 'Roof Replacement Chicago | Asphalt Shingles | Rooferly',
   description: 'Get instant roof replacement estimates in Chicago. Asphalt shingle specialists. Licensed, insured, transparent pricing. No sales visits required.',
   keywords: 'roof replacement chicago, asphalt shingle roofing chicago, chicago roof replacement, roofing contractors chicago',
   openGraph: {
-    title: 'Chicago Roof Replacement | Buy Your Roof Online | Rooferly',
-    description: 'Revolutionary online roof replacement in Chicago. See your new asphalt shingle roof before you buy. Licensed, insured, stress-free.',
-    type: 'website',
+    title: 'Roof Replacement Chicago | Rooferly',
+    description: 'Digital-first roof replacement with instant estimates and virtual visualization. Serving all of Chicagoland.',
     url: 'https://rooferly.co',
     siteName: 'Rooferly',
+    images: [
+      {
+        url: 'https://rooferly.co/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Rooferly - Chicago Roof Replacement',
+      },
+    ],
     locale: 'en_US',
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chicago Roof Replacement | Rooferly',
-    description: 'Buy your roof online in Chicago. Instant estimates, virtual visualization, licensed contractors.',
-    site: '@rooferly',
-  },
-  alternates: {
-    canonical: 'https://rooferly.co',
+    title: 'Roof Replacement Chicago | Rooferly',
+    description: 'Digital-first roof replacement with instant estimates and virtual visualization.',
+    images: ['https://rooferly.co/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -41,6 +45,9 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  verification: {
+    google: 'your-google-verification-code',
   },
 }
 

@@ -1,6 +1,27 @@
 {
-  "framework": "nextjs",
   "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "outputDirectory": ".next"
+  "framework": "nextjs",
+  "env": {
+    "NEXT_PUBLIC_ROOFERLY_GA4_ID": "@rooferly-ga4-id",
+    "NEXT_PUBLIC_ROOFERLY_GTM_ID": "GTM-N2FX2JVW"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
 }
