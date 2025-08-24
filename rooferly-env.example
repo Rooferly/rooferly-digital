@@ -1,0 +1,33 @@
+# Rooferly Google Analytics & Tag Manager Configuration
+# Copy this to .env.local and update with your actual IDs
+
+# Google Analytics 4 for Rooferly  
+NEXT_PUBLIC_ROOFERLY_GA4_ID=G-G9CRPQTXKJ
+
+# Google Tag Manager for Rooferly (already configured)
+NEXT_PUBLIC_ROOFERLY_GTM_ID=GTM-N2FX2JVW
+
+# Google APIs for enhanced analysis
+GOOGLE_SEARCH_CONSOLE_API_KEY=your_search_console_api_key
+GOOGLE_PAGESPEED_API_KEY=your_pagespeed_insights_api_key
+GOOGLE_MY_BUSINESS_API_KEY=your_gmb_api_key
+
+# Roofing Industry APIs (optional)
+EAGLEVIEW_API_KEY=your_eagleview_api_key
+SUMO_QUOTE_API_KEY=your_sumo_quote_api_key
+
+# Database for storing analysis results (optional)
+DATABASE_URL=your_database_connection_string
+
+# Application Configuration
+NEXT_PUBLIC_APP_URL=https://rooferly.co
+NODE_ENV=production
+
+# SEO Analysis Configuration
+DEFAULT_ANALYSIS_URL=rooferly.co
+COMPETITOR_URLS=competitor1.com,competitor2.com,competitor3.com
+
+# Rooferly Brand Configuration
+ROOFERLY_PRIMARY_COLOR=#4A5568
+ROOFERLY_SECONDARY_COLOR=#D97706
+ROOFERLY_BRAND_NAME=Rooferly

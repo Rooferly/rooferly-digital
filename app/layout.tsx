@@ -1,45 +1,17 @@
+import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
-import { SiteHeader } from '@/components/site-header'
-import { SiteFooter } from '@/components/site-footer'
-import { ComingSoonWrapper } from '@/components/coming-soon-wrapper'
+import RooferlyGoogleTagManager, { RooferlyGoogleTagManagerBody } from '@/components/rooferly-analytics/GoogleTagManager'
+import RooferlyGA4Enhanced from '@/components/analytics/RooferlyGA4Enhanced'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  // Force Vercel rebuild - SEO metadata update
-  title: 'Roof Replacement Chicago | Asphalt Shingles | Rooferly',
-  description: 'Get instant roof replacement estimates in Chicago. Asphalt shingle specialists. Licensed, insured, transparent pricing. No sales visits required.',
-  keywords: 'roof replacement chicago, asphalt shingle roofing chicago, chicago roof replacement, roofing contractors chicago',
-  openGraph: {
-    title: 'Chicago Roof Replacement | Buy Your Roof Online | Rooferly',
-    description: 'Revolutionary online roof replacement in Chicago. See your new asphalt shingle roof before you buy. Licensed, insured, stress-free.',
-    type: 'website',
-    url: 'https://rooferly.co',
-    siteName: 'Rooferly',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Chicago Roof Replacement | Rooferly',
-    description: 'Buy your roof online in Chicago. Instant estimates, virtual visualization, licensed contractors.',
-    site: '@rooferly',
-  },
-  alternates: {
-    canonical: 'https://rooferly.co',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  title: 'Rooferly Analytics - Advanced Roofing Website Intelligence',
+  description: 'Professional SEO and website analysis tool specifically designed for the roofing industry. Analyze rooferly.co and competitor sites.',
+  keywords: 'roofing SEO, website analysis, roofing contractor analytics, roof replacement SEO, local roofing search',
+  authors: [{ name: 'Rooferly Development Team' }],
+  viewport: 'width=device-width, initial-scale=1',
 }
 
 export default function RootLayout({
@@ -50,22 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link rel="icon" href="/favicons/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+        <RooferlyGoogleTagManager />
       </head>
       <body className={inter.className}>
-        <ComingSoonWrapper>
-          <div className="relative flex min-h-screen flex-col">
-            <SiteHeader />
-            <main className="flex-1">
-              {children}
-            </main>
-            <SiteFooter />
-          </div>
-        </ComingSoonWrapper>
+        <RooferlyGoogleTagManagerBody />
+        <RooferlyGA4Enhanced />
+        {children}
       </body>
     </html>
   )
