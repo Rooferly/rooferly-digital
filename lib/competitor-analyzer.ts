@@ -98,10 +98,10 @@ export class PlaywrightCompetitorAnalyzer {
    * Extract roofing-specific content from page text
    */
   private extractRoofingContent(pageText: string) {
-    const services = []
-    const serviceAreas = []
-    const trustSignals = []
-    const callsToAction = []
+    const services: string[] = []
+    const serviceAreas: string[] = []
+    const trustSignals: string[] = []
+    const callsToAction: string[] = []
 
     // Extract services offered
     if (pageText.toLowerCase().includes('roof replacement')) services.push('Roof Replacement')
