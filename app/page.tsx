@@ -157,14 +157,6 @@ export default function HomePage() {
                 Buy Your Roof Like You Buy Your Coffee
               </h1>
               
-              {/* DEPLOYMENT TEST - Remove after Vercel connection verified */}
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 mx-auto max-w-md">
-                <p className="text-sm font-medium">
-                  🚀 DEPLOYMENT TEST - Updated: {new Date().toLocaleString()}
-                </p>
-                <p className="text-xs">GA4: G-G9CRPQTXKJ | Address: 1552 S. Rte 59 #1415</p>
-              </div>
-              
               <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed">
                 Simple, fast, and exactly what you ordered. No sales pressure. No surprises. Roofing made simple.
               </p>
