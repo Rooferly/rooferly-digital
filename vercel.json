@@ -2,8 +2,8 @@
   "buildCommand": "npm run build",
   "framework": "nextjs",
   "env": {
-    "NEXT_PUBLIC_ROOFERLY_GA4_ID": "@rooferly-ga4-id",
-    "NEXT_PUBLIC_ROOFERLY_GTM_ID": "GTM-N2FX2JVW"
+    "NEXT_PUBLIC_GA4_MEASUREMENT_ID": "G-G9CRPQTXKJ",
+    "NEXT_PUBLIC_GTM_ID": "GTM-N2FX2JVW"
   },
   "headers": [
     {

@@ -3,7 +3,7 @@
 import Script from 'next/script'
 
 export function GoogleTagManager() {
-  const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
+  const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-N2FX2JVW'
 
   if (!GTM_ID) {
     console.warn('GTM ID not found. Please set NEXT_PUBLIC_GTM_ID in your environment variables.')
@@ -30,7 +30,7 @@ export function GoogleTagManager() {
 }
 
 export function GoogleTagManagerNoScript() {
-  const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
+  const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-N2FX2JVW'
 
   if (!GTM_ID) {
     return null

@@ -3,7 +3,7 @@
 import Script from 'next/script'
 
 export function GoogleAnalytics() {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || 'G-G9CRPQTXKJ'
 
   if (!GA_MEASUREMENT_ID) {
     console.warn('GA4 Measurement ID not found. Please set NEXT_PUBLIC_GA4_MEASUREMENT_ID in your environment variables.')
