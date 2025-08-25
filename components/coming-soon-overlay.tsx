@@ -14,17 +14,10 @@ export function ComingSoonOverlay() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Only show overlay in production (not in development)
-    const isDevelopment = process.env.NODE_ENV === 'development'
-    const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    
-    if (!isDevelopment && !isLocalhost) {
-      // Show overlay for pre-launch phase in production only
-      const timer = setTimeout(() => {
-        setIsOpen(true)
-      }, 1000) // Show after 1 second
-      return () => clearTimeout(timer)
-    }
+    // TEMPORARILY DISABLED - Testing Vercel deployment
+    // Overlay completely disabled to test GitHub-Vercel connection
+    console.log('Coming Soon overlay disabled for deployment testing')
+    return
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
